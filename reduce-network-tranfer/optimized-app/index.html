@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eco-conception example 1 - Optimized</title>
+  </head>
+  <body>
+    <div id="videoContainer">
+      <img
+        alt="Clic to play"
+        onclick="playVideo()"
+        role="button"
+        src="https://i.ytimg.com/vi_webp/PPLDZMjgaf8/maxresdefault.webp"
+        width="560"
+        height="315"
+      />
+    </div>
+    <table id="greatMinds">
+    </table>
+  </body>
+  <script>
+    function playVideo() {
+      const videoContainer = document.getElementById("videoContainer");
+      videoContainer.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/PPLDZMjgaf8?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    }
+
+    const greatMinds = [
+      {firstname: 'Ada', lastname: 'Lovelace', job: 'Mathematician', link: 'https://fr.wikipedia.org/wiki/Ada_Lovelace'},
+      {firstname: 'Grace', lastname: 'Hopper', job: 'Software developper', link: 'https://fr.wikipedia.org/wiki/Grace_Hopper'},
+      {firstname: 'Mae', lastname: 'Keane', job: 'Social activist', link: 'https://fr.wikipedia.org/wiki/Radium_Girls'},
+      {firstname: 'Margaret', lastname: 'Hamilton', job: 'Software developper', link: 'https://fr.wikipedia.org/wiki/Margaret_Hamilton_(scientifique)'},
+    ];
+
+    function addCell(row, mind, property) {
+      const cell = document.createElement('td');
+      const cellContent = document.createTextNode(mind[property]);
+      cell.appendChild(cellContent);
+      row.appendChild(cell);
+    }
+
+    function addRow(table, mind) {
+      const row = document.createElement('tr');
+      addCell(row, mind, 'firstname');
+      addCell(row, mind, 'lastname');
+      addCell(row, mind, 'job');
+      addCell(row, mind, 'link');
+      table.appendChild(row);
+    }
+
+    async function populateTable(people) {
+      await fetch('https://swapi.dev/api/people/1/'); // Some random api to simulate an api call
+      const table = document.getElementById('greatMinds');
+      for (const mind of greatMinds) {
+        addRow(table, mind);
+      }
+    };
+
+    populateTable(greatMinds);
+  </script>
+<html>
