@@ -1,0 +1,7 @@
+image-compression/*/*.avif
+image-compression/*/*.gif
+image-compression/*/*.jpeg
+image-compression/*/*.mp4
+image-compression/*/*.png
+image-compression/*/*.svg
+image-compression/*/*.webp
